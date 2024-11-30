@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 [project]
 name = 'Smart-Wallet'
 description = ''
@@ -48,3 +49,5 @@ strict = false
 trusted_sender = false
 trusted_caller = false
 callee_filter = false
+=======
+>>>>>>> Stashed changes
