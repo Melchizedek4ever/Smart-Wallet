@@ -6,6 +6,7 @@
 
 (use-trait sip-010-trait 'SP3FBR2AGK5H9QBDH3EEN6DF8EK8JY7RX8QJ5SVTE.sip-010-trait-ft-standard.sip-010-trait)
 (use-trait sip-009-trait 'SP2PABAF9FTAJYNFZH93XENAJ8FVY99RRM50D2JG9.nft-trait.nft-trait)
+(use-trait sip-013-token 'SPDBEG5X8XD50SPM1JJH0E5CTXGDV5NJTKAKKR5V.sip013-semi-fungible-token-trait)
 
 (define-constant err-unauthorised (err u4001))
 (define-constant err-forbidden (err u4003))
@@ -56,6 +57,16 @@
 		(try! (is-admin-calling))
 		(print {a: "sip009-transfer", payload: {nft-id: nft-id, recipient: recipient, sip009: sip009}})
 		(contract-call? sip009 transfer nft-id (as-contract tx-sender) recipient)
+	)
+)
+
+(define-public (sip013-transfer (token-id uint) (sender principal) (recipient principal) (sip013 <sip-013-trait>))
+	(begin
+		(try! (is-admin-calling))
+		(asserts! (or (is-eq sender tx-sender) (is-eq sender contract-caller)) (err-unauthorised))
+		(print {type: "sft_transfer", token-id: token-id, amount: amount, sender: sender, recipient: recipient})
+		(contract-call? sip013 ft-transfer? token-id (as-contract tx-sender) recipient)
+		(ok true)	
 	)
 )
 
