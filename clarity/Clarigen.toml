@@ -6,10 +6,13 @@ clarinet = "./Clarinet.toml"
 # Comment or remove section to skip TypeScript types
 [types]
 # `output` should be a path to a single file
-# output = "src/clarigen-types.ts"
+output = "../clarigen/src/clarigen-types.ts"
 
 # You can also specify multiple output paths:
-outputs = ["src/clarigen-types.ts", "test/clarigen-types.ts"]
+# outputs = [
+#   "src/clarigen-types.ts",
+#   "test/clarigen-types.ts"
+# ]
 
 # `types.after` - script to run after TypeScript types are generated.
 # examples:
